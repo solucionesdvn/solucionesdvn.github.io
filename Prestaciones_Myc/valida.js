@@ -404,20 +404,29 @@ function cargarVeredas() {
     var municipioSeleccionado = document.getElementById('municipios').value;
     var veredasSelect = document.getElementById('veredas');
     var tipoTerritorioSpan = document.getElementById('tipoTerritorio');
-    var actividadesUrbanasTable = document.getElementById('actividadesUrbanas');
-    var actividadesUrbanasConDificultadTable = document.getElementById('actividadesUrbanasConDificultad');
-    var actividadesRuralesTable = document.getElementById('actividadesRurales');
-    var actividadesRuralesConDificultadTable = document.getElementById('actividadesRuralesConDificultad');
 
     // Limpiar las opciones anteriores y el tipo de territorio
     veredasSelect.innerHTML = '<option value="">-- Selecciona --</option>';
     tipoTerritorioSpan.textContent = '';
 
-    // Ocultar la tabla de actividades
-    actividadesUrbanasTable.style.display = 'none';
-    actividadesUrbanasConDificultadTable.style.display = 'none';
-    actividadesRuralesTable.style.display = 'none';
-    actividadesRuralesConDificultadTable.style.display = 'none';
+    var tablasIDs = [
+        'actividadesUrbanas',
+        'actividadesUrbanasConDificultad',
+        'actividadesRurales',
+        'actividadesRuralesConDificultad'
+    ];
+       // Ocultar y destruir todas las tablas de actividades
+       tablasIDs.forEach(function(id) {
+        var table = document.getElementById(id);
+        if (table) {
+            // Ocultar la tabla
+            table.style.display = 'none';
+            // Destruir DataTable existente si existe
+            if ($.fn.DataTable.isDataTable('#' + id)) {
+                $('#' + id).DataTable().destroy();
+            }
+        }
+    });
     
     // Verificar si se seleccionó un municipio
     if (municipioSeleccionado && municipiosData[municipioSeleccionado]) {
@@ -436,18 +445,6 @@ function cargarVeredas() {
         tipoTerritorioSpan.textContent = 'Tipo Territorio: ' + veredas[0][1];
 
         // Verificar si el tipo de territorio es URBANO para mostrar la tabla de actividades
-        if (veredas[0][1] === 'URBANO') {
-            cargarActividadesUrbanas();
-        }
-        if (veredas[0][1] === 'URBANO CON DIFICULTAD') {
-            cargarActividadesUrbanasConDificultad();
-        }
-        if (veredas[0][1] === 'RURAL') {
-            cargarActividadesRurales();
-        }
-        if (veredas[0][1] === 'RURAL CON DIFICULTAD') {
-            cargarActividadesRuralesConDificultad();
-        }
     }
 }
 
@@ -463,10 +460,6 @@ function cargarTipoTerritorio() {
 
 
     // Ocultar la tabla de actividades urbanas
-    actividadesUrbanasTable.style.display = 'true';
-    actividadesUrbanasConDificultadTable.style.display = 'none';
-    actividadesRurales.style.display = 'none';
-    actividadesRuralesConDificultadTable.style.display = 'none';
 
 
     // Verificar si se seleccionó un municipio y una vereda
@@ -476,22 +469,7 @@ function cargarTipoTerritorio() {
         for (var i = 0; i < veredas.length; i++) {
             if (veredas[i][0] === veredaSeleccionada) {
                 // Mostrar el tipo de territorio
-                tipoTerritorioSpan.textContent = 'Tipo Territorio: ' + veredas[i][1];
-
-                // Verificar si el tipo de territorio es URBANO para mostrar la tabla de actividades
-                if (veredas[i][1] === 'URBANO') {
-                    cargarActividadesUrbanas();
-                }
-                if (veredas[i][1] === 'URBANO CON DIFICULTAD') {
-                    cargarActividadesUrbanasConDificultad();
-                }
-                if (veredas[i][1] === 'RURAL') {
-                    cargarActividadesRurales();
-                }
-                if (veredas[i][1] === 'RURAL CON DIFICULTAD') {
-                    cargarActividadesRuralesConDificultad();
-                }
-                break;
+                tipoTerritorioSpan.textContent = 'Tipo Territorio: ' + veredas[i][1];   
             }
         }
     }
@@ -508,7 +486,7 @@ function cargarTipoTerritorio() {
                 tipoTerritorioSpan.textContent = 'Tipo Territorio: ' + veredas[i][1];
 
                 // Verificar si el tipo de territorio es URBANO para mostrar la tabla de actividades
-                if (veredas[i][1] === 'URBANO') {
+                if (veredas[i][1] === 'URBANO') {                   
                     cargarActividadesUrbanas();
                 }
 
@@ -1068,6 +1046,7 @@ function cargarActividadesRurales() {
     actividadesRuralesTable.style.display = 'table';
 }
 
+// Función para cargar las actividades Rurales con Dificultad
 function cargarActividadesRuralesConDificultad() {
     var actividadesRuralesConDificultadTable = document.getElementById('actividadesRuralesConDificultad');
     // Limpiar las filas anteriores

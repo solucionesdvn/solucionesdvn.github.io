@@ -1,8 +1,3 @@
-
-if ($.fn.DataTable.isDataTable('#actividadesUrbanas')) {
-    actividadesUrbanasTable.DataTable().destroy();
-}
-
 // Objeto que contiene las veredas o localidades de cada municipio y su tipo de territorio
 var municipiosData = {
     'BOGOTA': [
@@ -650,16 +645,8 @@ function cargarActividadesUrbanas() {
         ['OA0053', 'PODA Y/O TRATAMIENTO INTEGRAL DE ÁRBOLES ', 'PROXI-LM', 'Esta actividad contempla el tratamiento integral de un (1) árbol (control de altura, poda de estructura, balanceo, aclareos, control de ramas colgantes y sobreextendidas) . Esta actividad será evaluada y avalada en conjunto con la Contratante para determinar el grado de dificultad por su tamaño y condición de especie arbórea. Considera las siguientes actividades. • Poda de un árbol (ramas, ganchos, etc.) hasta llegar a las distancias de seguridad y utilizando el sistema indicado por la distribuidora. Incluye toma de registros fotográficos antes, durante y después de realizar la poda. • Control de la caída (tecles de piola, cordel, etc.). Incluye señalización del lugar de caída. • Incluye la gestión de permisos con los propietarios de los predios • Georreferenciación, toma de datos dasométricos y elaboración de ficha técnica a cada árbol. • Tratamiento de cortes con cicatrizantes (aplicación de fungicida y/o pintura, etc.). • Recolección y disposición final de residuos vegetales (ramas, ganchos, etc.) y peligrosos a lugares autorizados. De ser necesario, incluye entrega de certificado emitido por el lugar autorizado correspondiente. • Instalación de placas de marcación en especies intervenidas. • En caso de ser necesario incluye la utilización de camion canasta • Presentación y digitación de informes mensuales requeridos por la distribuidora, además de actualización de la información en la base de datos de la distribuidora o autoridad ambiental para inventarios. • Visita de inspección previa a la actividad para el levantamiento de información de los trabajos solicitados por la distribuidora o autoridad ambiental.']
         
         // Agrega más actividades según sea necesario
-    ];
-    
-    $(document).ready(function() {
-        $('#actividadesUrbanas').DataTable({
-            "paging": true, // Activar paginación
-            "ordering": true, // Activar ordenamiento
-            "searching": true, // Activar búsqueda
-            "info": true // Mostrar información de la tabla
-        });
-    });
+    ]; 
+
 
 
     // Agregar las filas al cuerpo de la tabla
@@ -726,6 +713,34 @@ function cargarActividadesUrbanas() {
         modal.appendChild(modalDialog);
         document.body.appendChild(modal);
     }
+
+    if ($.fn.DataTable.isDataTable('#actividadesUrbanas')) {
+        $('#actividadesUrbanas').DataTable().destroy();
+    }
+    if ($.fn.DataTable.isDataTable('#actividadesUrbanasConDificultad')) {
+        $('#actividadesUrbanasConDificultad').DataTable().destroy();
+    }
+    if ($.fn.DataTable.isDataTable('#actividadesRurales')) {
+        $('#actividadesRurales').DataTable().destroy();
+    }
+    if ($.fn.DataTable.isDataTable('#actividadesRuralesConDificultad')) {
+        $('#actividadesRuralesConDificultad').DataTable().destroy();
+    }
+    
+    
+    
+
+    $(document).ready(function() {
+        $('#actividadesUrbanas').DataTable({
+            "paging": true,      // Habilitar paginación
+            "pageLength": 25,    // Número de filas por página
+            "lengthMenu": [10, 25, 50],  // Opciones de cantidad de filas por página
+            "ordering": true,    // Habilitar ordenamiento por columnas
+            "searching": true,   // Habilitar búsqueda
+            "info": true         // Mostrar información de la tabla (por ejemplo, "Mostrando 1 a 10 de 20 entradas")
+        });
+    });
+    
 
     // Mostrar la tabla de actividades urbanas
     actividadesUrbanasTable.style.display = 'table';
@@ -860,6 +875,31 @@ function cargarActividadesUrbanasConDificultad() {
         modal.appendChild(modalDialog);
         document.body.appendChild(modal);
     }
+
+    if ($.fn.DataTable.isDataTable('#actividadesUrbanas')) {
+        $('#actividadesUrbanas').DataTable().destroy();
+    }
+    if ($.fn.DataTable.isDataTable('#actividadesUrbanasConDificultad')) {
+        $('#actividadesUrbanasConDificultad').DataTable().destroy();
+    }
+    if ($.fn.DataTable.isDataTable('#actividadesRurales')) {
+        $('#actividadesRurales').DataTable().destroy();
+    }
+    if ($.fn.DataTable.isDataTable('#actividadesRuralesConDificultad')) {
+        $('#actividadesRuralesConDificultad').DataTable().destroy();
+    }
+    
+
+    $(document).ready(function() {
+        $('#actividadesUrbanasConDificultad').DataTable({
+            "paging": true,      // Habilitar paginación
+            "pageLength": 25,    // Número de filas por página
+            "lengthMenu": [10, 25, 50],  // Opciones de cantidad de filas por página
+            "ordering": true,    // Habilitar ordenamiento por columnas
+            "searching": true,   // Habilitar búsqueda
+            "info": true         // Mostrar información de la tabla (por ejemplo, "Mostrando 1 a 10 de 20 entradas")
+        });
+    });
 
     // Mostrar la tabla de actividades urbanas con dificultad
     
@@ -998,6 +1038,31 @@ function cargarActividadesRurales() {
         document.body.appendChild(modal);
     }
 
+    if ($.fn.DataTable.isDataTable('#actividadesUrbanas')) {
+        $('#actividadesUrbanas').DataTable().destroy();
+    }
+    if ($.fn.DataTable.isDataTable('#actividadesUrbanasConDificultad')) {
+        $('#actividadesUrbanasConDificultad').DataTable().destroy();
+    }
+    if ($.fn.DataTable.isDataTable('#actividadesRurales')) {
+        $('#actividadesRurales').DataTable().destroy();
+    }
+    if ($.fn.DataTable.isDataTable('#actividadesRuralesConDificultad')) {
+        $('#actividadesRuralesConDificultad').DataTable().destroy();
+    }
+    
+
+    $(document).ready(function() {
+        $('#actividadesRurales').DataTable({
+            "paging": true,      // Habilitar paginación
+            "pageLength": 25,    // Número de filas por página
+            "lengthMenu": [10, 25, 50],  // Opciones de cantidad de filas por página
+            "ordering": true,    // Habilitar ordenamiento por columnas
+            "searching": true,   // Habilitar búsqueda
+            "info": true         // Mostrar información de la tabla (por ejemplo, "Mostrando 1 a 10 de 20 entradas")
+        });
+    });
+
     // Mostrar la tabla de actividades urbanas con dificultad
     
     actividadesRuralesTable.style.display = 'table';
@@ -1130,6 +1195,31 @@ function cargarActividadesRuralesConDificultad() {
         modal.appendChild(modalDialog);
         document.body.appendChild(modal);
     }
+
+    if ($.fn.DataTable.isDataTable('#actividadesUrbanas')) {
+        $('#actividadesUrbanas').DataTable().destroy();
+    }
+    if ($.fn.DataTable.isDataTable('#actividadesUrbanasConDificultad')) {
+        $('#actividadesUrbanasConDificultad').DataTable().destroy();
+    }
+    if ($.fn.DataTable.isDataTable('#actividadesRurales')) {
+        $('#actividadesRurales').DataTable().destroy();
+    }
+    if ($.fn.DataTable.isDataTable('#actividadesRuralesConDificultad')) {
+        $('#actividadesRuralesConDificultad').DataTable().destroy();
+    }
+    
+
+    $(document).ready(function() {
+        $('#actividadesRuralesConDificultad').DataTable({
+            "paging": true,      // Habilitar paginación
+            "pageLength": 25,    // Número de filas por página
+            "lengthMenu": [10, 25, 50],  // Opciones de cantidad de filas por página
+            "ordering": true,    // Habilitar ordenamiento por columnas
+            "searching": true,   // Habilitar búsqueda
+            "info": true         // Mostrar información de la tabla (por ejemplo, "Mostrando 1 a 10 de 20 entradas")
+        });
+    });
 
     // Mostrar la tabla de actividades urbanas con dificultad
     

@@ -1,3 +1,8 @@
+
+if ($.fn.DataTable.isDataTable('#actividadesUrbanas')) {
+    actividadesUrbanasTable.DataTable().destroy();
+}
+
 // Objeto que contiene las veredas o localidades de cada municipio y su tipo de territorio
 var municipiosData = {
     'BOGOTA': [
@@ -463,7 +468,7 @@ function cargarTipoTerritorio() {
 
 
     // Ocultar la tabla de actividades urbanas
-    actividadesUrbanasTable.style.display = 'none';
+    actividadesUrbanasTable.style.display = 'true';
     actividadesUrbanasConDificultadTable.style.display = 'none';
     actividadesRurales.style.display = 'none';
     actividadesRuralesConDificultadTable.style.display = 'none';
@@ -646,6 +651,15 @@ function cargarActividadesUrbanas() {
         
         // Agrega más actividades según sea necesario
     ];
+    
+    $(document).ready(function() {
+        $('#actividadesUrbanas').DataTable({
+            "paging": true, // Activar paginación
+            "ordering": true, // Activar ordenamiento
+            "searching": true, // Activar búsqueda
+            "info": true // Mostrar información de la tabla
+        });
+    });
 
 
     // Agregar las filas al cuerpo de la tabla

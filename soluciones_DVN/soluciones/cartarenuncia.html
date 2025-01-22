@@ -85,7 +85,7 @@ Tel: ${employeePhone}
       },
       methods: {
         async downloadPDF() {
-          const pdfUrl = "ruta-a-tu-pdf-base.pdf"; // Cambia esta ruta al archivo PDF base
+          const pdfUrl = "assets/c_renuncia.pdf"; // Cambia esta ruta al archivo PDF base
           const existingPdfBytes = await fetch(pdfUrl).then((res) => res.arrayBuffer());
 
           const pdfDoc = await PDFDocument.load(existingPdfBytes);
